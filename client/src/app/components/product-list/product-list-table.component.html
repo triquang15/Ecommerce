@@ -13,8 +13,8 @@
         <img src="{{ tempProduct.imageUrl }}" alt="product">
       </td>
       <td>{{ tempProduct.name }}</td>
-      <td>{{ tempProduct.unitPrice | currency : "USD" }}</td>
-      <td>{{ tempProduct.unitsInStock }}</td>
+      <td><b>{{ tempProduct.unitPrice | currency : "USD" }}</b></td>
+      <td><a href="" class="primary-btn">Add to cart</a></td>
     </tr>
   </tbody>
 </table>
