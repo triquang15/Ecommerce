@@ -250,11 +250,11 @@ input.au-input.au-input-xl{
 }
 
 .total{
-    background:#205b8d;
+    background:#ed3f0a;
     line-height:43px;
     color:#fff;
     border-radius:30px;
-    border:1px solid #0da8e4;
+    border:1px solid #ed3f0a;
     float:left;
     margin-top:7px;
     padding-left:17px
@@ -283,11 +283,11 @@ input.au-input.au-input-xl{
     right:0;
     min-width:95px;
     color:#fff;
-    border:1px solid #205b8d;
+    border:1px solid #ed3f0a;
     -webkit-border-radius:3px;
     -moz-border-radius:3px;
     border-radius:43px;
-    background:#205b8d
+    background:#ed3f0a
 }
 
 .au-btn-submit:hover{
@@ -542,7 +542,7 @@ input.au-input.au-input-xl{
 .price{
     margin:15px 0 0;
     font-weight:800;
-    color:#0da8e4
+    color:#ed3f0a
 }
 .product-box h1{
     font-size:18px;
@@ -655,7 +655,7 @@ label.date{
     top:-1px;
     width:9px;
     height:15px;
-    border:solid #0da8e4;
+    border:solid #ed3f0a;
     border-width:0 4px 4px 0;
     -webkit-border-radius:2px;
     -moz-border-radius:2px;
@@ -690,7 +690,7 @@ table.table.table-bordered{
     border:1px solid #dee2e6
 }
 table.table.table-bordered th{
-    BACKGROUND:#0da8e4;
+    BACKGROUND:#ed3f0a;
     color:#fff;
     font-size:14px;
     padding:7px
@@ -717,7 +717,7 @@ table.table.table-bordered th{
  .price{
     margin:15px 0 0;
     font-weight:800;
-    color:#0da8e4
+    color:#ed3f0a
 }
 .detail-section{
     margin-top:60px
@@ -732,8 +732,8 @@ table.table.table-bordered th{
 
  .btn-info{
     color:#fff;
-    background-color:#0da8e4!important;
-    border-color:#0da8e4!important
+    background-color:#ed3f0a!important;
+    border-color:#ed3f0a!important
 }
 a.primary-btn{
     background:#f46045;
@@ -746,7 +746,7 @@ a.primary-btn{
     margin-top:5px
 }
 a.primary-btn:hover{
-    background:#0da8e4;
+    background:#ed3f0a;
     color:#fff
 }
 
@@ -986,11 +986,11 @@ footer ul li{
         right:10px;
         min-width:85px;
         color:#fff;
-        border:1px solid #205b8d;
+        border:1px solid #ed3f0a;
         -webkit-border-radius:3px;
         -moz-border-radius:3px;
         border-radius:0;
-        background:#205b8d
+        background:#ed3f0a
     }
     input.au-input.au-input-xl{
         border-radius:0!important;
@@ -1006,7 +1006,7 @@ footer ul li{
         font-size:18px;
         float:left;
         margin-top:16px;
-        color:#03a9f4;
+        color:#ed3f0a;
         margin-left:15px
     }
     .total span{
@@ -1019,11 +1019,11 @@ footer ul li{
         margin-left:6px
     }
     .total{
-        background:#205b8d;
+        background:#ed3f0a;
         line-height:30px;
         color:#fff;
         border-radius:30px;
-        border:1px solid #205b8d;
+        border:1px solid #ed3f0a;
         float:left;
         margin-top:9px;
         padding-left:12px
