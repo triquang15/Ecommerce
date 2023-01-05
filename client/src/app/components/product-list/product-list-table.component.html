@@ -10,9 +10,13 @@
   <tbody>
     <tr *ngFor="let tempProduct of products">
       <td class="align-middle">
+        <a routerLink="/products/{{tempProduct.id}}">
         <img src="{{ tempProduct.imageUrl }}" alt="product">
+      </a>
       </td>
-      <td><b>{{ tempProduct.name }}</b> <br> <br>
+      <td>
+        <a routerLink="/products/{{tempProduct.id}}">
+        <b>{{ tempProduct.name }}</b> </a><br> <br>
         {{ tempProduct.description }}
       </td>
       <td><b>{{ tempProduct.unitPrice | currency : "USD" }}</b></td>
