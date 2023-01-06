@@ -15,7 +15,9 @@ import java.util.List;
 import java.util.Set;
 
 import com.triquang.entity.Category;
+import com.triquang.entity.Country;
 import com.triquang.entity.Product;
+import com.triquang.entity.State;
 
 @Configuration
 public class DataRestConfig implements RepositoryRestConfigurer {
@@ -32,19 +34,21 @@ public class DataRestConfig implements RepositoryRestConfigurer {
 
 		HttpMethod[] theUnsupportedActions = { HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE, HttpMethod.PATCH };
 
-		// disable HTTP methods for Product: PUT, POST, DELETE and PATCH
-		config.getExposureConfiguration().forDomainType(Product.class)
-				.withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
-				.withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
-
 		// disable HTTP methods for ProductCategory: PUT, POST, DELETE and PATCH
-		config.getExposureConfiguration().forDomainType(Category.class)
-				.withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
-				.withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
+		disableHttpMethods(Category.class, config, theUnsupportedActions);
+		disableHttpMethods(Product.class, config, theUnsupportedActions);
+		disableHttpMethods(Country.class, config, theUnsupportedActions);
+		disableHttpMethods(State.class, config, theUnsupportedActions);
 
 		// call an internal helper method
 		exposeIds(config);
 
+	}
+
+	private void disableHttpMethods(Class theClass, RepositoryRestConfiguration config, HttpMethod[] theUnsupportedActions) {
+		config.getExposureConfiguration().forDomainType(theClass)
+				.withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
+				.withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
 	}
 
 	private void exposeIds(RepositoryRestConfiguration config) {
