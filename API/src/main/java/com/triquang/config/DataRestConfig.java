@@ -17,6 +17,7 @@ import java.util.Set;
 
 import com.triquang.entity.Category;
 import com.triquang.entity.Country;
+import com.triquang.entity.Order;
 import com.triquang.entity.Product;
 import com.triquang.entity.State;
 
@@ -43,6 +44,7 @@ public class DataRestConfig implements RepositoryRestConfigurer {
 		disableHttpMethods(Product.class, config, theUnsupportedActions);
 		disableHttpMethods(Country.class, config, theUnsupportedActions);
 		disableHttpMethods(State.class, config, theUnsupportedActions);
+		disableHttpMethods(Order.class, config, theUnsupportedActions);
 
 		// call an internal helper method
 		exposeIds(config);
