@@ -18,7 +18,7 @@ import com.triquang.service.CheckoutService;
 
 @Service
 public class CheckoutServiceImpl implements CheckoutService {
-	
+
 	@Autowired
 	private CustomerRepository customerRepository;
 
@@ -27,34 +27,41 @@ public class CheckoutServiceImpl implements CheckoutService {
 	public PurchaseResponse placeOrder(Purchase purchase) {
 		// Retrieve the order info from dto
 		Order order = purchase.getOrder();
-		
+
 		// Generate tracking number
 		String orderTrackingNumber = generateOrderTrackingNumber();
 		order.setOrderTrackingNumber(orderTrackingNumber);
-		
-		// Populate  order with orderItems
+
+		// Populate order with orderItems
 		Set<OrderItem> orderItems = purchase.getOrderItems();
 		orderItems.forEach(item -> order.add(item));
-		
+
 		// Populate order with billingAddress and shippingAddress
 		order.setBillingAddress(purchase.getBillingAddress());
 		order.setShippingAddress(purchase.getShippingAddress());
-		
+
 		// Populate customer with order
 		Customer customer = purchase.getCustomer();
-		customer.add(order);
+		String theEmail = customer.getEmail();
+		Customer customerInDB = customerRepository.findByEmail(theEmail);
+
+		if (customerInDB != null) {
+			customer = customerInDB;
+		}
 		
+		customer.add(order);
+
 		// Save to the database
 		customerRepository.save(customer);
-		
-		// Return a response	
-		
+
+		// Return a response
+
 		return new PurchaseResponse(orderTrackingNumber);
 	}
 
 	private String generateOrderTrackingNumber() {
 		// Generate a random UUID number
-		
+
 		return UUID.randomUUID().toString();
 	}
 

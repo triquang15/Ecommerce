@@ -3,6 +3,7 @@ package com.triquang.config;
 import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -21,6 +22,9 @@ import com.triquang.entity.State;
 
 @Configuration
 public class DataRestConfig implements RepositoryRestConfigurer {
+	
+	@Value("${allowed.origins}")
+	private String[] theAllowedOrigins;
 
 	private EntityManager entityManager;
 
@@ -42,6 +46,8 @@ public class DataRestConfig implements RepositoryRestConfigurer {
 
 		// call an internal helper method
 		exposeIds(config);
+		
+		cors.addMapping(config.getBasePath() + "/**").allowedOrigins(theAllowedOrigins);
 
 	}
 

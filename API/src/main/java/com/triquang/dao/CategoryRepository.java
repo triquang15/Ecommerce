@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.triquang.entity.Category;
 
-@CrossOrigin("http://localhost:4200")
 @RepositoryRestResource(collectionResourceRel = "category", path = "category")
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
