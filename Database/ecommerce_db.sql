@@ -18,6 +18,33 @@ USE `ecommerce_db`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `address`
+--
+
+DROP TABLE IF EXISTS `address`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `address` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `city` varchar(255) DEFAULT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `zip_code` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `address`
+--
+
+LOCK TABLES `address` WRITE;
+/*!40000 ALTER TABLE `address` DISABLE KEYS */;
+INSERT INTO `address` VALUES (1,'Canada','Brazil','Acre','19111'),(2,'Ha Noi','Canada','Viet Nam','123456'),(3,'Canada','Brazil','Acre','19111'),(4,'Ha Noi','Canada','Viet Nam','123456'),(5,'Canada','Brazil','Acre','19111'),(6,'Ha Noi','Canada','Viet Nam','123456'),(7,'Ho Chi Minh',NULL,NULL,'12000'),(8,'Ho Chi Minh','Turkey','Bitlis','12000'),(9,'Lodon',NULL,NULL,'12345'),(10,'Lodon','Germany','Baden-Württemberg','12345'),(11,'Viet Nam',NULL,NULL,'123435'),(12,'Viet Nam','India','Andhra Pradesh','123435'),(13,'Ha Noi','Germany','Baden-Württemberg','123'),(14,'Ha Noi','Germany','Baden-Württemberg','123');
+/*!40000 ALTER TABLE `address` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `category`
 --
 
@@ -64,6 +91,101 @@ LOCK TABLES `country` WRITE;
 /*!40000 ALTER TABLE `country` DISABLE KEYS */;
 INSERT INTO `country` VALUES (1,'BR','Brazil'),(2,'CA','Canada'),(3,'DE','Germany'),(4,'IN','India'),(5,'TR','Turkey'),(6,'US','United States');
 /*!40000 ALTER TABLE `country` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `customer`
+--
+
+DROP TABLE IF EXISTS `customer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `customer` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) DEFAULT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer`
+--
+
+LOCK TABLES `customer` WRITE;
+/*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+INSERT INTO `customer` VALUES (1,'triquang@gmail.com','Tri','Quang'),(2,'leo_messi@gmail.com','Leo','Messi'),(3,'quangtri.nguyen@dxc.com','Quang','Tri');
+/*!40000 ALTER TABLE `customer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `order_item`
+--
+
+DROP TABLE IF EXISTS `order_item`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `order_item` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `image_url` varchar(255) DEFAULT NULL,
+  `product_id` bigint DEFAULT NULL,
+  `quantity` int NOT NULL,
+  `unit_price` decimal(19,2) DEFAULT NULL,
+  `order_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKt4dc2r9nbvbujrljv3e23iibt` (`order_id`),
+  CONSTRAINT `FKt4dc2r9nbvbujrljv3e23iibt` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order_item`
+--
+
+LOCK TABLES `order_item` WRITE;
+/*!40000 ALTER TABLE `order_item` DISABLE KEYS */;
+INSERT INTO `order_item` VALUES (1,'assets/images/products/images/images1/jpg',26,1,18.99,1),(2,'assets/images/products/images/images1/jpg',51,1,17.99,1),(3,'assets/images/products/images/images1/jpg',26,1,18.99,2),(4,'assets/images/products/images/images1/jpg',51,1,17.99,2),(5,'assets/images/products/images/images1/jpg',51,1,17.99,3),(6,'assets/images/products/images/images1/jpg',26,1,18.99,3),(7,'assets/images/products/image1.jpg',1,1,19.99,4),(8,'assets/images/products/image16.jpg',16,1,99.90,5),(9,'assets/images/products/image17.jpg',17,1,125.90,5),(10,'assets/images/products/image1.jpg',1,1,19.99,5),(11,'assets/images/products/image15.jpg',15,1,29.90,5),(12,'assets/images/products/image16.jpg',16,1,99.90,6),(13,'assets/images/products/image15.jpg',15,1,29.90,6),(14,'assets/images/products/image3.jpg',3,1,99.00,6),(15,'assets/images/products/image11.jpg',11,1,29.90,7),(16,'assets/images/products/image10.jpg',10,3,299.90,7),(17,'assets/images/products/image1.jpg',1,1,19.99,7);
+/*!40000 ALTER TABLE `order_item` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `orders` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `date_created` datetime(6) DEFAULT NULL,
+  `date_updated` datetime(6) DEFAULT NULL,
+  `order_tracking_number` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `total_price` decimal(19,2) DEFAULT NULL,
+  `total_quantity` int NOT NULL,
+  `billing_address_id` bigint DEFAULT NULL,
+  `customer_id` bigint DEFAULT NULL,
+  `shipping_address_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKqraecqgbbr1p37ic9dr44e2dr` (`billing_address_id`),
+  KEY `FK624gtjin3po807j3vix093tlf` (`customer_id`),
+  KEY `FKh0uue95ltjysfmkqb5abgk7tj` (`shipping_address_id`),
+  CONSTRAINT `FK624gtjin3po807j3vix093tlf` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
+  CONSTRAINT `FKh0uue95ltjysfmkqb5abgk7tj` FOREIGN KEY (`shipping_address_id`) REFERENCES `address` (`id`),
+  CONSTRAINT `FKqraecqgbbr1p37ic9dr44e2dr` FOREIGN KEY (`billing_address_id`) REFERENCES `address` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orders`
+--
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (1,'2023-01-11 02:59:43.488000','2023-01-11 02:59:43.488000','683a7f57-fe88-415a-8261-eb4282bd43d6',NULL,36.98,2,1,1,2),(2,'2023-01-11 03:00:10.986000','2023-01-11 03:00:10.986000','37583dcd-845d-441b-a9fd-6e3e95d67480',NULL,36.98,2,3,1,4),(3,'2023-01-11 03:02:31.375000','2023-01-11 03:02:31.375000','19aff7e2-03ed-4248-be79-01ef3bef7827',NULL,36.98,2,5,2,6),(4,'2023-01-11 08:36:28.663000','2023-01-11 08:36:28.663000','6e0efe96-f33c-40a3-b338-43740841404f',NULL,19.99,1,7,3,8),(5,'2023-01-11 08:44:41.796000','2023-01-11 08:44:41.796000','86ce0bf7-cc9b-4b4e-957d-03185fb556ea',NULL,275.69,4,9,3,10),(6,'2023-01-11 09:57:46.382000','2023-01-11 09:57:46.382000','c706dcd1-8dc7-4728-9a88-3aa30ebe3460',NULL,228.80,3,11,3,12),(7,'2023-01-13 04:07:10.566000','2023-01-13 04:07:10.566000','cd3e5257-aff6-45aa-903c-07bc7a115367',NULL,949.59,5,13,3,14);
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -137,4 +259,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-06 17:48:22
+-- Dump completed on 2023-01-13 11:14:06
